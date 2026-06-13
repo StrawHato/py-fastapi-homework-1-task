@@ -10,6 +10,7 @@ from database import get_db, MovieModel
 
 router = APIRouter()
 
+
 @router.get("/movies/", response_model=schemas.MovieListResponseSchema)
 async def get_movies(
     page: int = Query(default=1, ge=1),
@@ -35,9 +36,9 @@ async def get_movies(
     total_pages = math.ceil(total_items / per_page)
 
     if page > 1:
-        prev_page = f"theater/movies/?page={page-1}&per_page={per_page}"
+        prev_page = f"/theater/movies/?page={page - 1}&per_page={per_page}"
     if page < total_pages:
-        next_page =f"theater/movies/?page={page + 1}&per_page={per_page}"
+        next_page = f"/theater/movies/?page={page + 1}&per_page={per_page}"
 
     return {
         "movies": movies,
